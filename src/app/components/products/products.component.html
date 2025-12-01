@@ -1,0 +1,38 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow -->
+
+<button (click)="createNewProduct()">create</button>
+
+<div class="product--grid">
+    <!--eslint-disable-next-line @angular-eslint/template/prefer-control-flow-->
+    <div *ngFor="let product of products">
+        <app-product [product]="product"
+        (addedProduct)="onAddToShoppingCart($event)"
+        (showProduct)="onShowDetail($event)"
+        ></app-product>
+    </div>
+</div>
+
+<!-- ESTO SERA COMO UN MENU LATERAL :P-->
+
+<div class="product__detail" [class.active] ="showProductDetail">
+    <div>
+        <button (click)="toggleProductDetail()">Close</button>
+        <h1>{{productChosen.title}}</h1>
+        <swiper-container
+      slides-per-view="1"
+      space-between="10"
+      pagination ="true"
+      navigation="true"
+      style="width: 100%; height: 280px;"
+      class="detail-swiper"
+    >
+      
+      <swiper-slide
+      
+       *ngFor="let img of productChosen.images">
+        <img [src]="img" alt="" class="detail-img">
+      </swiper-slide>
+    </swiper-container>
+        <p>{{productChosen.description}}</p>
+    </div>
+</div>

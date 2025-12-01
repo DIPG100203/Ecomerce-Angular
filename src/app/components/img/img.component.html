@@ -1,0 +1,11 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow -->
+<!--  eslint-disable-next-line @angular-eslint/template/alt-text -->
+<img  (load)="imgLoad()" (error)="imgError()" [src]="img" *ngIf="img; else elseImg">
+<!-- imagen para no olvidar
+
+    https://www.w3schools.com/howto/img_avatar.png
+
+-->
+<ng-template #elseImg>
+    <img [src]="imageDefault" alt="">
+</ng-template>

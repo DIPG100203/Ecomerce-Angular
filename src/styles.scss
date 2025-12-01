@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import './app/components/img/img.component.scss';
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Science+Gothic:wght@100..900&display=swap');
+@import url(./styles/reset.scss);
+@import "swiper/swiper-bundle.css";
+
+
+
+
+* {
+    font-family: 'Science Gothic', sans-serif;
+}
+
+
+.products--grid {
+    app-img {
+        img {
+            border-radius: 10px;
+        }
+    }
+}
