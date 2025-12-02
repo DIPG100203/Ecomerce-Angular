@@ -59,12 +59,22 @@ export class ProductsComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
 
+  // funcion para evitar repetir codigo de paginacion
+  private pagination() {
     this.productsService.getProductsByPages(10, 0).subscribe(data => {
       this.products=data;
       this.offset += this.limit;
-    });
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  ngOnInit(): void {
+
+    this.pagination();
 
   }
 
