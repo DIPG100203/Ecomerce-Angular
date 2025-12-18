@@ -1,3 +1,4 @@
+<!-- eslint-disable @angular-eslint/template/prefer-control-flow -->
 <div class="show-mobile">
   <div>
     <button (click)="toogleMenu()">
@@ -32,7 +33,12 @@
       </ul>
     </nav>
     <div class="info">
-      <div class="account">nicolas</div>
+      <div class="account">
+        <button *ngIf="!profile; else elseBlock" (click)="login()">Login</button>
+        <ng-template #elseBlock>
+          {{profile?.email}}
+        </ng-template>
+      </div>
       <div>
         <a href="">
           <img src="/svg/icon_shopping_cart.svg" alt="logo" />

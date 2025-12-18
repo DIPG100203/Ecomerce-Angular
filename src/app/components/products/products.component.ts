@@ -1,4 +1,5 @@
 import { Component, OnInit, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { switchMap } from 'rxjs';
 import { Product, CreateProductDTO, UpdateProductDTO } from '../../models/product';
 import { ProductComponent } from '../product/product.component';
 import { CommonModule } from '@angular/common';
@@ -108,6 +109,24 @@ export class ProductsComponent implements OnInit {
     })
 
   }
+
+  readUpdate(id: string){
+
+  this.productsService.getProduct(id)
+  .pipe(
+    switchMap((product) => this.productsService.updateProduct(product.id, {title: 'change'}))
+  ).subscribe(data => {
+    console.log(data)
+  })
+  this.productsService.fetchReadAndUpdate(id, {title: 'change'})
+  .subscribe (response => {
+    const read = response[0];
+    const update = response[1];
+    console.log('read', read);
+    console.log('update', update);
+  })
+  
+}
 
   createNewProduct() {
     const product: CreateProductDTO = {
